@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Titanic Survival Prediction</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>🚢 Titanic Survival Prediction</h1>
+
+        <p>
+            Predict whether a passenger would survive using a
+            Decision Tree Machine Learning model.
+        </p>
+
+    </div>
+
+    <form action="/predict" method="post">
+
+        <div class="grid">
+
+            <div class="input-group">
+
+                <label>Passenger Class</label>
+
+                <select name="pclass">
+
+                    <option value="1">First Class</option>
+
+                    <option value="2">Second Class</option>
+
+                    <option value="3">Third Class</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Gender</label>
+
+                <select name="sex">
+
+                    <option value="male">Male</option>
+
+                    <option value="female">Female</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Age</label>
+
+                <input
+                    type="number"
+                    name="age"
+                    step="0.1"
+                    placeholder="29">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Fare</label>
+
+                <input
+                    type="number"
+                    name="fare"
+                    step="0.01"
+                    placeholder="75.50">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Siblings / Spouses</label>
+
+                <input
+                    type="number"
+                    name="sibsp"
+                    placeholder="0">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Parents / Children</label>
+
+                <input
+                    type="number"
+                    name="parch"
+                    placeholder="0">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Embarked</label>
+
+                <select name="embarked">
+
+                    <option value="C">Cherbourg</option>
+
+                    <option value="Q">Queenstown</option>
+
+                    <option value="S">Southampton</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <button type="submit">
+
+            Predict Survival
+
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <h3>Prediction</h3>
+
+        <h2>{{ prediction }}</h2>
+
+        {% if probability %}
+
+        <p>
+
+            Confidence:
+            <strong>{{ probability }}%</strong>
+
+        </p>
+
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
