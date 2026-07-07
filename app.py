@@ -29,16 +29,15 @@ def home(request: Request):
             "prediction": None
         }
     )
-
-@app.post("/predict", response_class=HTMLResponse)
+@app.post("/predict",, response_class=HTMLResponse)
 def predict(
     request: Request,
     Age: float = Form(...),
     Fare: float = Form(...),
-    Pclass: float = Form(...),
-    Sex: float = Form(...),
-    SibSp: float = Form(...),
-    Parch: float = Form(...)
+    Pclass: int = Form(...),
+    Sex: str = Form(...),
+    SibSp: int = Form(...),
+    Parch: int = Form(...)
 ):
     prediction = model.predict([[
         Age,
