@@ -123,24 +123,22 @@
 
     </form>
 
-    {% if prediction %}
+   {% if prediction %}
 
-    <div class="result">
+<div class="result">
 
-        <h3>Prediction</h3>
+    <h3>Prediction</h3>
 
-        <h2>{{ prediction }}</h2>
+    <h2>{{ prediction }}</h2>
 
-        {% if probability %}
+    <p>
+        Confidence:
+        <strong>{{ probability }}%</strong>
+    </p>
 
-        <p>
+</div>
 
-            Confidence:
-            <strong>{{ probability }}%</strong>
-
-        </p>
-
-        {% endif %}
+{% endif %}
 
     </div>
 
