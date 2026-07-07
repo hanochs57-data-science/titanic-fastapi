@@ -29,7 +29,6 @@ def home(request: Request):
             "prediction": None
         }
     )
-
 @app.post("/predict", response_class=HTMLResponse)
 def predict(
     request: Request,
@@ -40,25 +39,34 @@ def predict(
     SibSp: float = Form(...),
     Parch: float = Form(...)
 ):
-    prediction = model.predict([[
+
+    # Input data
+    input_data = [[
         Age,
         Fare,
         Pclass,
         Sex,
         SibSp,
         Parch
-    ]])
-    predict_probability = model.predict_proba([[
-        Age,
-        Fare,
-        Pclass,
-        Sex,
-        SibSp,
-        Parch
-    ]])
-    predicted_class = int(prediction[0])
+    ]]
+
+    # Prediction
+    prediction = model.predict(input_data)[0]
+
+    # Prediction probabilities
+    predict_probability = model.predict_proba(input_data)
+
+    # Predicted class (0 or 1)
+    predicted_class = int(prediction)
+
+    # Survived / Did not Survive
     predicted_option = options[predicted_class]
-    probability = round(predict_probability[0],2)
+
+    # Confidence of predicted class
+    probability = round(
+        float(predict_probability[0][predicted_class]) * 100,
+        2
+    )
 
     return templates.TemplateResponse(
         request=request,
