@@ -115,7 +115,6 @@ The application accepts the following passenger information:
 | Fare | Ticket Fare |
 | Siblings/Spouses | Number of SibSp |
 | Parents/Children | Number of Parch |
-| Embarked | Port of Embarkation |
 
 ---
 
